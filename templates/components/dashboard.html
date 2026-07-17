@@ -1,0 +1,370 @@
+<!-- Header -->
+
+<div class="d-flex justify-content-between align-items-center mb-4">
+
+    <div>
+
+        <h2 class="fw-bold mb-1">
+
+            AI Resume Ranker
+
+        </h2>
+
+        <p class="text-secondary mb-0">
+
+            Applicant Tracking System Dashboard
+
+        </p>
+
+    </div>
+
+    <button
+        id="themeBtn"
+        class="btn btn-primary"
+        onclick="toggleTheme()">
+
+        🌙 Dark Mode
+
+    </button>
+
+</div>
+
+<!-- ATS Score Card -->
+
+<div class="card shadow-lg border-0 mb-4">
+
+    <div class="card-body text-center">
+
+        {% if score >= 90 %}
+
+            {% set badge="Excellent" %}
+            {% set stars="★★★★★" %}
+            {% set color="success" %}
+
+        {% elif score >= 75 %}
+
+            {% set badge="Very Good" %}
+            {% set stars="★★★★☆" %}
+            {% set color="primary" %}
+
+        {% elif score >= 60 %}
+
+            {% set badge="Good" %}
+            {% set stars="★★★☆☆" %}
+            {% set color="warning" %}
+
+        {% else %}
+
+            {% set badge="Needs Improvement" %}
+            {% set stars="★★☆☆☆" %}
+            {% set color="danger" %}
+
+        {% endif %}
+
+        <h5 class="text-uppercase text-secondary">
+
+            ATS Score
+
+        </h5>
+
+        <h1 class="display-2 fw-bold text-{{ color }}">
+
+            {{ score }}%
+
+        </h1>
+
+        <span class="badge bg-{{ color }} fs-6 px-3 py-2">
+
+            {{ badge }}
+
+        </span>
+
+        <div class="mt-3 fs-3">
+
+            {{ stars }}
+
+        </div>
+
+        <div class="progress mt-4">
+
+            <div
+                id="scoreBar"
+                class="progress-bar bg-{{ color }}"
+                role="progressbar"
+                data-score="{{ score }}">
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+<!-- Dashboard Cards -->
+
+<div class="row g-4 mb-4">
+
+    <div class="col-lg-4 col-md-6">
+
+        <div class="card dashboard-card text-center shadow-sm">
+
+            <div class="card-body">
+
+                <h1 class="text-primary">
+
+                    {{ matched|length }}
+
+                </h1>
+
+                <h6>
+
+                    Matched Skills
+
+                </h6>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <div class="col-lg-4 col-md-6">
+
+        <div class="card dashboard-card text-center shadow-sm">
+
+            <div class="card-body">
+
+                <h1 class="text-danger">
+
+                    {{ missing|length }}
+
+                </h1>
+
+                <h6>
+
+                    Missing Skills
+
+                </h6>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <div class="col-lg-4 col-md-6">
+
+        <div class="card dashboard-card text-center shadow-sm">
+
+            <div class="card-body">
+
+                <h1 class="text-success">
+
+                    {{ skills|length }}
+
+                </h1>
+
+                <h6>
+
+                    Skills Detected
+
+                </h6>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <div class="col-lg-4 col-md-6">
+
+        <div class="card dashboard-card text-center shadow-sm">
+
+            <div class="card-body">
+
+                <h1 class="text-warning">
+
+                    {{ breakdown.experience }}/10
+
+                </h1>
+
+                <h6>
+
+                    Experience Score
+
+                </h6>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <div class="col-lg-4 col-md-6">
+
+        <div class="card dashboard-card text-center shadow-sm">
+
+            <div class="card-body">
+
+                <h1 class="text-info">
+
+                    {{ breakdown.length }}/5
+
+                </h1>
+
+                <h6>
+
+                    Resume Length
+
+                </h6>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <div class="col-lg-4 col-md-6">
+
+        <div class="card dashboard-card text-center shadow-sm">
+
+            <div class="card-body">
+
+                {% if score >= 90 %}
+
+                    <h2 class="text-success">
+
+                        Excellent
+
+                    </h2>
+
+                {% elif score >= 75 %}
+
+                    <h2 class="text-primary">
+
+                        Very Good
+
+                    </h2>
+
+                {% elif score >= 60 %}
+
+                    <h2 class="text-warning">
+
+                        Good
+
+                    </h2>
+
+                {% else %}
+
+                    <h2 class="text-danger">
+
+                        Improve
+
+                    </h2>
+
+                {% endif %}
+
+                <h6>
+
+                    Resume Quality
+
+                </h6>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+<!-- AI Verdict -->
+
+<div class="card shadow-sm border-0 mb-4">
+
+    <div class="card-body">
+
+        <h4 class="mb-3">
+
+            🤖 AI Verdict
+
+        </h4>
+
+        {% if score >= 90 %}
+
+            <div class="alert alert-success mb-0">
+
+                <h5>
+
+                    ★★★★★ Excellent Resume
+
+                </h5>
+
+                <p class="mb-0">
+
+                    Your resume is highly optimized for ATS systems and demonstrates excellent alignment with the job description.
+
+                </p>
+
+            </div>
+
+        {% elif score >= 75 %}
+
+            <div class="alert alert-primary mb-0">
+
+                <h5>
+
+                    ★★★★☆ Very Good Resume
+
+                </h5>
+
+                <p class="mb-0">
+
+                    Your resume is competitive and only requires minor improvements to maximize its ATS score.
+
+                </p>
+
+            </div>
+
+        {% elif score >= 60 %}
+
+            <div class="alert alert-warning mb-0">
+
+                <h5>
+
+                    ★★★☆☆ Good Resume
+
+                </h5>
+
+                <p class="mb-0">
+
+                    Your resume has a solid foundation but should be enhanced with additional skills and achievements.
+
+                </p>
+
+            </div>
+
+        {% else %}
+
+            <div class="alert alert-danger mb-0">
+
+                <h5>
+
+                    ★★☆☆☆ Needs Improvement
+
+                </h5>
+
+                <p class="mb-0">
+
+                    Tailor your resume to the job description by adding relevant skills, projects, and measurable accomplishments.
+
+                </p>
+
+            </div>
+
+        {% endif %}
+
+    </div>
+
+</div>

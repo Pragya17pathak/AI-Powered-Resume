@@ -1,0 +1,173 @@
+<!-- Resume Preview -->
+
+<div class="card shadow-lg border-0 mb-4">
+
+    <div class="card-header bg-dark text-white">
+
+        <div class="d-flex justify-content-between align-items-center">
+
+            <h3 class="mb-0">
+
+                📄 Resume Preview
+
+            </h3>
+
+            <span class="badge bg-light text-dark">
+
+                Extracted Resume Text
+
+            </span>
+
+        </div>
+
+    </div>
+
+    <div class="card-body">
+
+        <div class="row mb-4">
+
+            <div class="col-md-3">
+
+                <div class="text-center p-3 border rounded">
+
+                    <h3 class="text-primary">
+
+                        {{ text.split()|length }}
+
+                    </h3>
+
+                    <p class="mb-0">
+
+                        Words
+
+                    </p>
+
+                </div>
+
+            </div>
+
+            <div class="col-md-3">
+
+                <div class="text-center p-3 border rounded">
+
+                    <h3 class="text-success">
+
+                        {{ text|length }}
+
+                    </h3>
+
+                    <p class="mb-0">
+
+                        Characters
+
+                    </p>
+
+                </div>
+
+            </div>
+
+            <div class="col-md-3">
+
+                <div class="text-center p-3 border rounded">
+
+                    <h3 class="text-warning">
+
+                        {{ skills|length }}
+
+                    </h3>
+
+                    <p class="mb-0">
+
+                        Skills Found
+
+                    </p>
+
+                </div>
+
+            </div>
+
+            <div class="col-md-3">
+
+                <div class="text-center p-3 border rounded">
+
+                    <h3 class="text-danger">
+
+                        {{ matched|length }}
+
+                    </h3>
+
+                    <p class="mb-0">
+
+                        Skills Matched
+
+                    </p>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <div class="alert alert-info">
+
+            <strong>
+
+                ℹ Resume Text Extracted
+
+            </strong>
+
+            <br>
+
+            The content below is the text extracted from your uploaded resume and used for ATS analysis.
+
+        </div>
+
+        <div class="border rounded p-3 bg-light">
+
+            <pre class="resume-text mb-0" id="resumeContent">
+
+{{ text }}
+
+            </pre>
+
+        </div>
+
+        <div class="text-center mt-4">
+
+            <button
+                class="btn btn-primary me-2"
+                onclick="copyResumeText()">
+
+                📋 Copy Text
+
+            </button>
+
+            <button
+                class="btn btn-success"
+                onclick="window.print()">
+
+                📄 Print Report
+
+            </button>
+
+        </div>
+
+    </div>
+
+</div>
+
+<script>
+
+function copyResumeText()
+
+{
+
+    const text = document.getElementById("resumeContent").innerText;
+
+    navigator.clipboard.writeText(text);
+
+    alert("Resume text copied successfully!");
+
+}
+
+</script>

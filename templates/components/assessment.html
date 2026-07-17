@@ -1,0 +1,259 @@
+<!-- AI Resume Assessment -->
+
+<div class="card shadow-lg border-0 mb-4">
+
+    <div class="card-header bg-primary text-white">
+
+        <h3 class="mb-0">
+
+            📑 AI Resume Assessment
+
+        </h3>
+
+    </div>
+
+    <div class="card-body">
+
+        <!-- Overall Evaluation -->
+
+        <div class="mb-5">
+
+            <div class="d-flex justify-content-between align-items-center mb-3">
+
+                <h4 class="text-primary mb-0">
+
+                    📊 Overall Evaluation
+
+                </h4>
+
+                <span class="badge bg-primary rounded-pill">
+
+                    {{ report|length }}
+
+                </span>
+
+            </div>
+
+            {% if report %}
+
+                <ul class="list-group">
+
+                    {% for item in report %}
+
+                        <li class="list-group-item d-flex">
+
+                            <span class="me-2">
+
+                                📌
+
+                            </span>
+
+                            <span>
+
+                                {{ item }}
+
+                            </span>
+
+                        </li>
+
+                    {% endfor %}
+
+                </ul>
+
+            {% else %}
+
+                <div class="alert alert-secondary mb-0">
+
+                    Resume evaluation unavailable.
+
+                </div>
+
+            {% endif %}
+
+        </div>
+
+        <!-- Strength Summary -->
+
+        <div class="mb-5">
+
+            <div class="d-flex justify-content-between align-items-center mb-3">
+
+                <h4 class="text-success mb-0">
+
+                    💪 Strength Summary
+
+                </h4>
+
+                <span class="badge bg-success rounded-pill">
+
+                    {{ report_strengths|length }}
+
+                </span>
+
+            </div>
+
+            {% if report_strengths %}
+
+                <ul class="list-group">
+
+                    {% for item in report_strengths %}
+
+                        <li class="list-group-item">
+
+                            ✅ {{ item }}
+
+                        </li>
+
+                    {% endfor %}
+
+                </ul>
+
+            {% else %}
+
+                <div class="alert alert-light mb-0">
+
+                    No strengths detected.
+
+                </div>
+
+            {% endif %}
+
+        </div>
+
+        <!-- Final Recommendations -->
+
+        <div class="mb-5">
+
+            <div class="d-flex justify-content-between align-items-center mb-3">
+
+                <h4 class="text-warning mb-0">
+
+                    📌 Final Recommendations
+
+                </h4>
+
+                <span class="badge bg-warning text-dark rounded-pill">
+
+                    {{ recommendations|length }}
+
+                </span>
+
+            </div>
+
+            {% if recommendations %}
+
+                <ul class="list-group">
+
+                    {% for item in recommendations %}
+
+                        <li class="list-group-item">
+
+                            🚀 {{ item }}
+
+                        </li>
+
+                    {% endfor %}
+
+                </ul>
+
+            {% else %}
+
+                <div class="alert alert-success mb-0">
+
+                    Your resume is already well optimized.
+
+                </div>
+
+            {% endif %}
+
+        </div>
+
+        <!-- Final Hiring Verdict -->
+
+        <div>
+
+            <h4 class="mb-3">
+
+                ⭐ Hiring Readiness
+
+            </h4>
+
+            {% if score >= 90 %}
+
+                <div class="alert alert-success">
+
+                    <h5>
+
+                        ★★★★★ Interview Ready
+
+                    </h5>
+
+                    <p class="mb-0">
+
+                        Your resume is highly ATS compatible and demonstrates strong technical skills, projects, and professional experience. It is ready for most software engineering roles.
+
+                    </p>
+
+                </div>
+
+            {% elif score >= 75 %}
+
+                <div class="alert alert-primary">
+
+                    <h5>
+
+                        ★★★★☆ Strong Candidate
+
+                    </h5>
+
+                    <p class="mb-0">
+
+                        Your resume is competitive. Adding more quantified achievements and certifications will make it even stronger.
+
+                    </p>
+
+                </div>
+
+            {% elif score >= 60 %}
+
+                <div class="alert alert-warning">
+
+                    <h5>
+
+                        ★★★☆☆ Average Candidate
+
+                    </h5>
+
+                    <p class="mb-0">
+
+                        Improve your resume by tailoring it to the job description and including additional technical projects and relevant skills.
+
+                    </p>
+
+                </div>
+
+            {% else %}
+
+                <div class="alert alert-danger">
+
+                    <h5>
+
+                        ★★☆☆☆ Needs Major Improvement
+
+                    </h5>
+
+                    <p class="mb-0">
+
+                        Your resume currently lacks several ATS requirements. Focus on relevant skills, certifications, experience, and measurable accomplishments before applying.
+
+                    </p>
+
+                </div>
+
+            {% endif %}
+
+        </div>
+
+    </div>
+
+</div>

@@ -1,0 +1,11 @@
+venv/
+__pycache__/
+*.pyc
+
+static/uploads/*
+reports/*
+
+.idea/
+.vscode/
+
+.DS_Store

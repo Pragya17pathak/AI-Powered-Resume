@@ -1,0 +1,275 @@
+<!-- ATS Score Breakdown -->
+
+<div class="card shadow-lg border-0 mb-4">
+
+    <div class="card-header bg-primary text-white">
+
+        <h3 class="mb-0">
+
+            📊 ATS Score Breakdown
+
+        </h3>
+
+    </div>
+
+    <div class="card-body">
+
+        <!-- Resume Similarity -->
+
+        <div class="mb-4">
+
+            <div class="d-flex justify-content-between">
+
+                <span>📄 Resume Similarity</span>
+
+                <strong>{{ breakdown.similarity }}/30</strong>
+
+            </div>
+
+            <div class="progress mt-2">
+
+                <div
+                    id="similarityBar"
+                    class="progress-bar bg-primary"
+                    role="progressbar"
+                    aria-valuemin="0"
+                    aria-valuemax="30">
+
+                    {{ breakdown_percent.similarity }}%
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <!-- Skill Match -->
+
+        <div class="mb-4">
+
+            <div class="d-flex justify-content-between">
+
+                <span>💻 Skill Match</span>
+
+                <strong>{{ breakdown.skills }}/25</strong>
+
+            </div>
+
+            <div class="progress mt-2">
+
+                <div
+                    id="skillsBar"
+                    class="progress-bar bg-success"
+                    role="progressbar"
+                    aria-valuemin="0"
+                    aria-valuemax="25">
+
+                    {{ breakdown_percent.skills }}%
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <!-- Experience -->
+
+        <div class="mb-4">
+
+            <div class="d-flex justify-content-between">
+
+                <span>💼 Experience</span>
+
+                <strong>{{ breakdown.experience }}/10</strong>
+
+            </div>
+
+            <div class="progress mt-2">
+
+                <div
+                    id="experienceBar"
+                    class="progress-bar bg-info"
+                    role="progressbar"
+                    aria-valuemin="0"
+                    aria-valuemax="10">
+
+                    {{ breakdown_percent.experience }}%
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <!-- Projects -->
+
+        <div class="mb-4">
+
+            <div class="d-flex justify-content-between">
+
+                <span>📂 Projects</span>
+
+                <strong>{{ breakdown.projects }}/10</strong>
+
+            </div>
+
+            <div class="progress mt-2">
+
+                <div
+                    id="projectsBar"
+                    class="progress-bar bg-warning text-dark"
+                    role="progressbar"
+                    aria-valuemin="0"
+                    aria-valuemax="10">
+
+                    {{ breakdown_percent.projects }}%
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <!-- Education -->
+
+        <div class="mb-4">
+
+            <div class="d-flex justify-content-between">
+
+                <span>🎓 Education</span>
+
+                <strong>{{ breakdown.education }}/10</strong>
+
+            </div>
+
+            <div class="progress mt-2">
+
+                <div
+                    id="educationBar"
+                    class="progress-bar bg-secondary"
+                    role="progressbar"
+                    aria-valuemin="0"
+                    aria-valuemax="10">
+
+                    {{ breakdown_percent.education }}%
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <!-- Certifications -->
+
+        <div class="mb-4">
+
+            <div class="d-flex justify-content-between">
+
+                <span>📜 Certifications</span>
+
+                <strong>{{ breakdown.certifications }}/5</strong>
+
+            </div>
+
+            <div class="progress mt-2">
+
+                <div
+                    id="certificationsBar"
+                    class="progress-bar bg-danger"
+                    role="progressbar"
+                    aria-valuemin="0"
+                    aria-valuemax="5">
+
+                    {{ breakdown_percent.certifications }}%
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <!-- Contact -->
+
+        <div class="mb-4">
+
+            <div class="d-flex justify-content-between">
+
+                <span>📧 Contact Information</span>
+
+                <strong>{{ breakdown.contact }}/5</strong>
+
+            </div>
+
+            <div class="progress mt-2">
+
+                <div
+                    id="contactBar"
+                    class="progress-bar bg-dark"
+                    role="progressbar"
+                    aria-valuemin="0"
+                    aria-valuemax="5">
+
+                    {{ breakdown_percent.contact }}%
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <!-- Resume Length -->
+
+        <div>
+
+            <div class="d-flex justify-content-between">
+
+                <span>📑 Resume Length</span>
+
+                <strong>{{ breakdown.length }}/5</strong>
+
+            </div>
+
+            <div class="progress mt-2">
+
+                <div
+                    id="lengthBar"
+                    class="progress-bar bg-primary"
+                    role="progressbar"
+                    aria-valuemin="0"
+                    aria-valuemax="5">
+
+                    {{ breakdown_percent.length }}%
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+<script>
+
+document.addEventListener("DOMContentLoaded", function () {
+
+    document.getElementById("similarityBar").style.width = "{{ breakdown_percent.similarity }}%";
+
+    document.getElementById("skillsBar").style.width = "{{ breakdown_percent.skills }}%";
+
+    document.getElementById("experienceBar").style.width = "{{ breakdown_percent.experience }}%";
+
+    document.getElementById("projectsBar").style.width = "{{ breakdown_percent.projects }}%";
+
+    document.getElementById("educationBar").style.width = "{{ breakdown_percent.education }}%";
+
+    document.getElementById("certificationsBar").style.width = "{{ breakdown_percent.certifications }}%";
+
+    document.getElementById("contactBar").style.width = "{{ breakdown_percent.contact }}%";
+
+    document.getElementById("lengthBar").style.width = "{{ breakdown_percent.length }}%";
+
+});
+
+</script>

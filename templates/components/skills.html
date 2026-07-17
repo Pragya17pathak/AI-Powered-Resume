@@ -1,0 +1,169 @@
+<!-- Matched & Missing Skills -->
+
+<div class="row mb-4">
+
+    <!-- Matched Skills -->
+
+    <div class="col-lg-6">
+
+        <div class="card shadow-lg border-0 h-100">
+
+            <div class="card-body">
+
+                <div class="d-flex justify-content-between align-items-center mb-3">
+
+                    <h4 class="text-success mb-0">
+
+                        ✅ Matched Skills
+
+                    </h4>
+
+                    <span class="badge bg-success rounded-pill">
+
+                        {{ matched|length }}
+
+                    </span>
+
+                </div>
+
+                {% if matched %}
+
+                    <div class="d-flex flex-wrap">
+
+                        {% for skill in matched %}
+
+                            <span class="badge bg-success fs-6 m-1 p-2">
+
+                                {{ skill }}
+
+                            </span>
+
+                        {% endfor %}
+
+                    </div>
+
+                {% else %}
+
+                    <div class="alert alert-light text-center mb-0">
+
+                        No matched skills found.
+
+                    </div>
+
+                {% endif %}
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <!-- Missing Skills -->
+
+    <div class="col-lg-6">
+
+        <div class="card shadow-lg border-0 h-100">
+
+            <div class="card-body">
+
+                <div class="d-flex justify-content-between align-items-center mb-3">
+
+                    <h4 class="text-danger mb-0">
+
+                        ❌ Missing Skills
+
+                    </h4>
+
+                    <span class="badge bg-danger rounded-pill">
+
+                        {{ missing|length }}
+
+                    </span>
+
+                </div>
+
+                {% if missing %}
+
+                    <div class="d-flex flex-wrap">
+
+                        {% for skill in missing %}
+
+                            <span class="badge bg-danger fs-6 m-1 p-2">
+
+                                {{ skill }}
+
+                            </span>
+
+                        {% endfor %}
+
+                    </div>
+
+                {% else %}
+
+                    <div class="alert alert-success text-center mb-0">
+
+                        🎉 Great! No missing skills detected.
+
+                    </div>
+
+                {% endif %}
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+<!-- Extracted Skills -->
+
+<div class="card shadow-lg border-0 mb-4">
+
+    <div class="card-body">
+
+        <div class="d-flex justify-content-between align-items-center mb-3">
+
+            <h4>
+
+                📋 Extracted Skills
+
+            </h4>
+
+            <span class="badge bg-primary rounded-pill">
+
+                {{ skills|length }} Skills
+
+            </span>
+
+        </div>
+
+        {% if skills %}
+
+            <div class="d-flex flex-wrap">
+
+                {% for skill in skills %}
+
+                    <span class="badge bg-primary fs-6 p-2 m-1">
+
+                        {{ skill }}
+
+                    </span>
+
+                {% endfor %}
+
+            </div>
+
+        {% else %}
+
+            <div class="alert alert-warning text-center mb-0">
+
+                No skills extracted from the resume.
+
+            </div>
+
+        {% endif %}
+
+    </div>
+
+</div>

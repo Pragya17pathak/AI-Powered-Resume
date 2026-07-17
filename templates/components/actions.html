@@ -1,0 +1,230 @@
+<!-- Action Buttons -->
+
+<div class="card shadow-lg border-0 mb-4">
+
+    <div class="card-body">
+
+        <h3 class="text-center mb-4">
+
+            ⚡ Quick Actions
+
+        </h3>
+
+        <div class="row g-3">
+
+            <div class="col-lg-3 col-md-6">
+
+                <a href="/"
+                   class="btn btn-primary w-100 btn-lg">
+
+                    🔄 Analyze Another Resume
+
+                </a>
+
+            </div>
+
+            <div class="col-lg-3 col-md-6">
+
+                <button
+                    class="btn btn-success w-100 btn-lg"
+                    onclick="window.print()">
+
+                    🖨 Print Report
+
+                </button>
+
+            </div>
+
+            <div class="col-lg-3 col-md-6">
+
+                <button
+                    class="btn btn-warning w-100 btn-lg"
+                    onclick="copyReport()">
+
+                    📋 Copy Summary
+
+                </button>
+
+            </div>
+
+            <div class="col-lg-3 col-md-6">
+
+                <button
+                    class="btn btn-dark w-100 btn-lg"
+                    onclick="downloadReport()">
+
+                    ⬇ Download Report
+
+                </button>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+<!-- ATS Tips -->
+
+<div class="card shadow-lg border-0 mb-4">
+
+    <div class="card-header bg-info text-white">
+
+        <h4 class="mb-0">
+
+            💡 ATS Optimization Tips
+
+        </h4>
+
+    </div>
+
+    <div class="card-body">
+
+        <div class="row">
+
+            <div class="col-md-6">
+
+                <ul class="list-group list-group-flush">
+
+                    <li class="list-group-item">
+
+                        ✅ Tailor your resume for every job application.
+
+                    </li>
+
+                    <li class="list-group-item">
+
+                        ✅ Include relevant technical skills.
+
+                    </li>
+
+                    <li class="list-group-item">
+
+                        ✅ Add measurable achievements.
+
+                    </li>
+
+                    <li class="list-group-item">
+
+                        ✅ Keep formatting clean and simple.
+
+                    </li>
+
+                </ul>
+
+            </div>
+
+            <div class="col-md-6">
+
+                <ul class="list-group list-group-flush">
+
+                    <li class="list-group-item">
+
+                        ✅ Include GitHub and LinkedIn profiles.
+
+                    </li>
+
+                    <li class="list-group-item">
+
+                        ✅ Mention certifications and internships.
+
+                    </li>
+
+                    <li class="list-group-item">
+
+                        ✅ Use keywords from the job description.
+
+                    </li>
+
+                    <li class="list-group-item">
+
+                        ✅ Keep your resume concise and ATS-friendly.
+
+                    </li>
+
+                </ul>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+<!-- Footer -->
+
+<footer class="text-center mt-5">
+
+    <hr>
+
+    <h5 class="fw-bold">
+
+        AI Resume Ranker
+
+    </h5>
+
+    <p class="text-secondary mb-1">
+
+        Intelligent Applicant Tracking System
+
+    </p>
+
+    <p class="small text-muted">
+
+        Built with Flask, Python, spaCy, Scikit-learn, Bootstrap and Machine Learning
+
+    </p>
+
+    <p class="small text-muted">
+
+        © 2026 AI Resume Ranker. All Rights Reserved.
+
+    </p>
+
+</footer>
+
+<script>
+
+function copyReport()
+
+{
+
+    const report = document.body.innerText;
+
+    navigator.clipboard.writeText(report);
+
+    alert("Report copied successfully!");
+
+}
+
+function downloadReport()
+
+{
+
+    const report = document.body.innerText;
+
+    const blob = new Blob(
+
+        [report],
+
+        {
+
+            type: "text/plain"
+
+        }
+
+    );
+
+    const link = document.createElement("a");
+
+    link.href = URL.createObjectURL(blob);
+
+    link.download = "AI_Resume_Report.txt";
+
+    link.click();
+
+}
+
+</script>
