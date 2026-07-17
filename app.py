@@ -9,6 +9,7 @@ from model.suggestions import generate_suggestions
 from model.analyzer import analyze_resume
 from model.report import generate_report
 from model.pdf_report import generate_pdf
+from model.grading import get_resume_grade
 
 app = Flask(__name__)
 
@@ -85,6 +86,10 @@ def upload_resume():
 
     )
 
+    # Calculate resume grade
+
+    grade = get_resume_grade(ats_score)
+
     # Calculate percentage values for progress bars
 
     breakdown_percent = {
@@ -145,11 +150,13 @@ def upload_resume():
 
     )
 
-    # Save latest analysis for PDF download
+    # Save latest analysis
 
     latest_result = {
 
         "score": ats_score,
+
+        "grade": grade,
 
         "breakdown": breakdown,
 
@@ -174,6 +181,8 @@ def upload_resume():
         skills=skills,
 
         score=ats_score,
+
+        grade=grade,
 
         matched=matched_skills,
 

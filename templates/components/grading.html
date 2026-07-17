@@ -1,0 +1,85 @@
+<div class="card shadow-lg border-0 mb-4">
+
+    <div class="card-header bg-dark text-white">
+
+        <h3 class="mb-0">
+
+            🏆 Resume Evaluation
+
+        </h3>
+
+    </div>
+
+    <div class="card-body">
+
+        <div class="row text-center">
+
+            <div class="col-md-3">
+
+                <h6>
+
+                    ATS Score
+
+                </h6>
+
+                <h2 class="text-primary">
+
+                    {{ "%.1f"|format(score) }}%
+
+                </h2>
+
+            </div>
+
+            <div class="col-md-3">
+
+                <h6>
+
+                    Grade
+
+                </h6>
+
+                <span class="badge bg-{{ grade.badge }} fs-4">
+
+                    {{ grade.grade }}
+
+                </span>
+
+            </div>
+
+            <div class="col-md-3">
+
+                <h6>
+
+                    Performance
+
+                </h6>
+
+                <strong>
+
+                    {{ grade.performance }}
+
+                </strong>
+
+            </div>
+
+            <div class="col-md-3">
+
+                <h6>
+
+                    Recommendation
+
+                </h6>
+
+                <strong>
+
+                    {{ grade.recommendation }}
+
+                </strong>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>

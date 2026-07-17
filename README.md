@@ -1,29 +1,48 @@
 # 🤖 AI-Powered Resume Ranker
 
-An AI-powered Resume Ranking and ATS (Applicant Tracking System) Analyzer built using **Flask**, **Python**, **Machine Learning**, **spaCy**, and **Scikit-learn**. The application analyzes resumes against a job description, calculates an ATS score, identifies matched and missing skills, provides AI-based improvement suggestions, visualizes results with interactive charts, and generates downloadable PDF reports.
+An AI-powered Resume Ranking and ATS (Applicant Tracking System) Analyzer built using **Flask**, **Python**, **Machine Learning**, **spaCy**, **Scikit-learn**, and **Chart.js**. The application evaluates resumes against a job description, calculates an ATS score, assigns a resume grade, provides hiring recommendations, extracts skills, generates AI-powered suggestions, visualizes analytics, and allows users to download a professional PDF report.
 
 ---
 
 ## 🚀 Features
 
+### Resume Analysis
+
 - 📄 Upload Resume (PDF)
 - 📝 Analyze Resume against Job Description
 - 🎯 ATS Score Calculation
-- 📊 Interactive Dashboard
-- 📈 Doughnut Chart for ATS Score
-- 📉 Bar Chart for Score Breakdown
+- 🏆 Resume Grade (A+, A, B, C, D, F)
+- 💼 Hiring Recommendation
+- 📊 Resume Quality Assessment
+
+### Skill Analysis
+
 - ✅ Skill Extraction
 - ✔️ Matched Skills Detection
 - ❌ Missing Skills Detection
 - 🤖 AI Resume Analysis
 - 💡 AI Improvement Suggestions
-- 📋 Resume Assessment
-- 👀 Resume Preview
-- 📥 Download Professional PDF Report
+
+### Dashboard
+
+- 📈 ATS Score Dashboard
+- 🍩 Doughnut Chart Visualization
+- 📊 Score Breakdown Bar Chart
+- 📉 Progress Indicators
+- 📱 Responsive Interface
+
+### Report Generation
+
+- 📄 Resume Preview
+- 📥 Download PDF Report
 - 🖨 Print Report
 - 📋 Copy Report Summary
-- 🌙 Light/Dark Theme Support
-- 📱 Responsive Bootstrap UI
+
+### User Experience
+
+- 🌙 Light/Dark Theme
+- 📱 Fully Responsive Bootstrap UI
+- ⚡ Fast Resume Processing
 
 ---
 
@@ -44,13 +63,16 @@ An AI-powered Resume Ranking and ATS (Applicant Tracking System) Analyzer built 
 - pdfplumber
 - ReportLab
 
+### Data Visualization
+
+- Chart.js
+
 ### Frontend
 
 - HTML5
 - CSS3
 - Bootstrap 5
 - JavaScript
-- Chart.js
 
 ---
 
@@ -63,6 +85,7 @@ AI-Powered Resume Ranker/
 │
 ├── model/
 │   ├── analyzer.py
+│   ├── grading.py
 │   ├── parser.py
 │   ├── pdf_report.py
 │   ├── preprocess.py
@@ -83,6 +106,7 @@ AI-Powered Resume Ranker/
 │   ├── result.html
 │   └── components/
 │       ├── dashboard.html
+│       ├── grading.html
 │       ├── charts.html
 │       ├── breakdown.html
 │       ├── skills.html
@@ -103,7 +127,6 @@ AI-Powered Resume Ranker/
 
 ```bash
 git clone https://github.com/Pragya17pathak/AI-Powered-Resume.git
-
 cd AI-Powered-Resume
 ```
 
@@ -121,7 +144,7 @@ Windows
 venv\Scripts\activate
 ```
 
-Linux / Mac
+Linux / macOS
 
 ```bash
 source venv/bin/activate
@@ -133,13 +156,13 @@ source venv/bin/activate
 pip install -r requirements.txt
 ```
 
-### Run Application
+### Run the Application
 
 ```bash
 python app.py
 ```
 
-Open
+Open your browser:
 
 ```
 http://127.0.0.1:5000
@@ -162,22 +185,48 @@ http://127.0.0.1:5000
 
 ---
 
+## 🏆 Resume Evaluation
+
+Every analyzed resume receives:
+
+- ATS Score
+- Resume Grade
+- Performance Level
+- Hiring Recommendation
+
+Example:
+
+```
+ATS Score: 88%
+
+Grade: A
+
+Performance: Excellent
+
+Recommendation: Highly Recommended
+```
+
+---
+
 ## 📈 Dashboard
 
-The application provides interactive visualizations including:
+Interactive dashboard includes:
 
 - ATS Score Doughnut Chart
 - Score Breakdown Bar Chart
 - Progress Bars
-- Resume Analysis Dashboard
+- Resume Analytics
+- Resume Evaluation Card
 
 ---
 
-## 📄 PDF Report
+## 📄 Downloadable PDF Report
 
-Users can download a professional report containing:
+The generated report includes:
 
 - ATS Score
+- Resume Grade
+- Hiring Recommendation
 - Score Breakdown
 - Matched Skills
 - Missing Skills
@@ -187,26 +236,27 @@ Users can download a professional report containing:
 
 ---
 
-## 📸 Application Workflow
+## 📸 Workflow
 
 1. Upload Resume
 2. Enter Job Description
-3. ATS Analysis
-4. Resume Evaluation
-5. Dashboard Visualization
-6. AI Suggestions
-7. Download PDF Report
+3. Resume Parsing
+4. ATS Analysis
+5. Resume Evaluation
+6. Dashboard Visualization
+7. AI Suggestions
+8. Download Professional PDF Report
 
 ---
 
 ## 🔮 Future Enhancements
 
-- Resume Grade (A+, A, B...)
-- Hiring Recommendation
 - Keyword Match Percentage
-- Multiple Resume Comparison
-- User Authentication
+- Resume Section Rating
+- Resume Comparison
+- AI Resume Rewriter
 - Resume History
+- User Authentication
 - Database Integration
 - Cloud Deployment
 - Email Report Sharing
@@ -217,14 +267,12 @@ Users can download a professional report containing:
 
 **Pragya Pathak**
 
-GitHub:
-https://github.com/Pragya17pathak
+GitHub
 
-LinkedIn:
-https://www.linkedin.com/
+https://github.com/Pragya17pathak
 
 ---
 
-## ⭐ If you like this project
+## ⭐ Support
 
-Give this repository a ⭐ on GitHub.
+If you found this project helpful, please consider giving it a ⭐ on GitHub.
