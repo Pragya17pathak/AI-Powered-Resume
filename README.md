@@ -1,44 +1,33 @@
 # 🤖 AI-Powered Resume Ranker
 
-An AI-powered Resume Ranking System built with **Python** and **Flask** that evaluates resumes against a job description using Natural Language Processing (NLP). The system calculates an ATS (Applicant Tracking System) score, identifies matched and missing skills, provides AI-based suggestions, and generates a detailed resume analysis report.
-
----
-
-## 📌 Project Overview
-
-Recruiters often receive hundreds of resumes for a single job opening. This project automates the resume screening process by comparing a resume with a job description and generating an ATS score along with detailed insights.
-
-The system helps candidates improve their resumes while assisting recruiters in identifying the most suitable applicants efficiently.
+An AI-powered Resume Ranking and ATS (Applicant Tracking System) Analyzer built using **Flask**, **Python**, **Machine Learning**, **spaCy**, and **Scikit-learn**. The application analyzes resumes against a job description, calculates an ATS score, identifies matched and missing skills, provides AI-based improvement suggestions, visualizes results with interactive charts, and generates downloadable PDF reports.
 
 ---
 
 ## 🚀 Features
 
-- 📄 PDF Resume Parsing
-- 🧹 Resume Text Preprocessing
+- 📄 Upload Resume (PDF)
+- 📝 Analyze Resume against Job Description
 - 🎯 ATS Score Calculation
-- 🔍 Resume & Job Description Similarity
-- 💻 Skill Extraction
-- ✅ Matched Skills Detection
+- 📊 Interactive Dashboard
+- 📈 Doughnut Chart for ATS Score
+- 📉 Bar Chart for Score Breakdown
+- ✅ Skill Extraction
+- ✔️ Matched Skills Detection
 - ❌ Missing Skills Detection
-- 📊 ATS Score Breakdown
 - 🤖 AI Resume Analysis
-- 💡 Personalized Resume Improvement Suggestions
-- 📝 AI Hiring Assessment
-- 📑 Resume Preview
-- 📱 Responsive Bootstrap Dashboard
-- 🧩 Modular Flask Templates
+- 💡 AI Improvement Suggestions
+- 📋 Resume Assessment
+- 👀 Resume Preview
+- 📥 Download Professional PDF Report
+- 🖨 Print Report
+- 📋 Copy Report Summary
+- 🌙 Light/Dark Theme Support
+- 📱 Responsive Bootstrap UI
 
 ---
 
-## 🛠️ Tech Stack
-
-### Frontend
-
-- HTML5
-- CSS3
-- Bootstrap 5
-- JavaScript
+## 🛠 Tech Stack
 
 ### Backend
 
@@ -48,35 +37,34 @@ The system helps candidates improve their resumes while assisting recruiters in 
 ### Machine Learning & NLP
 
 - Scikit-learn
-- TF-IDF Vectorizer
-- Cosine Similarity
-- Regular Expressions (Regex)
+- spaCy
 
-### Libraries
+### PDF Processing
 
 - pdfplumber
-- pandas
-- spaCy
-- scikit-learn
+- ReportLab
+
+### Frontend
+
+- HTML5
+- CSS3
+- Bootstrap 5
+- JavaScript
+- Chart.js
 
 ---
 
 ## 📂 Project Structure
 
 ```
-AI-Powered-Resume/
+AI-Powered Resume Ranker/
 │
 ├── app.py
-├── requirements.txt
-├── README.md
-├── .gitignore
-│
-├── dataset/
-│   └── skills.csv
 │
 ├── model/
 │   ├── analyzer.py
 │   ├── parser.py
+│   ├── pdf_report.py
 │   ├── preprocess.py
 │   ├── ranker.py
 │   ├── report.py
@@ -90,32 +78,32 @@ AI-Powered-Resume/
 │   │   └── script.js
 │   └── uploads/
 │
-└── templates/
-    ├── index.html
-    ├── result.html
-    └── components/
-        ├── dashboard.html
-        ├── breakdown.html
-        ├── skills.html
-        ├── analysis.html
-        ├── assessment.html
-        ├── preview.html
-        └── actions.html
+├── templates/
+│   ├── index.html
+│   ├── result.html
+│   └── components/
+│       ├── dashboard.html
+│       ├── charts.html
+│       ├── breakdown.html
+│       ├── skills.html
+│       ├── analysis.html
+│       ├── assessment.html
+│       ├── preview.html
+│       └── actions.html
+│
+├── requirements.txt
+└── README.md
 ```
 
 ---
 
-## ⚙️ Installation
+## ⚙ Installation
 
-### Clone the Repository
+### Clone Repository
 
 ```bash
 git clone https://github.com/Pragya17pathak/AI-Powered-Resume.git
-```
 
-### Navigate to Project Folder
-
-```bash
 cd AI-Powered-Resume
 ```
 
@@ -133,7 +121,7 @@ Windows
 venv\Scripts\activate
 ```
 
-Linux / macOS
+Linux / Mac
 
 ```bash
 source venv/bin/activate
@@ -145,15 +133,13 @@ source venv/bin/activate
 pip install -r requirements.txt
 ```
 
----
-
-## ▶️ Run the Project
+### Run Application
 
 ```bash
 python app.py
 ```
 
-Open your browser and visit:
+Open
 
 ```
 http://127.0.0.1:5000
@@ -161,135 +147,69 @@ http://127.0.0.1:5000
 
 ---
 
-## 📖 How It Works
+## 📊 ATS Scoring Parameters
 
-### Step 1
-
-Upload a PDF resume.
-
-### Step 2
-
-Paste the Job Description.
-
-### Step 3
-
-The system extracts the resume text.
-
-### Step 4
-
-The resume is preprocessed using NLP techniques.
-
-### Step 5
-
-Skills are extracted from the resume and job description.
-
-### Step 6
-
-TF-IDF Vectorization and Cosine Similarity are used to calculate resume-job similarity.
-
-### Step 7
-
-The ATS score is generated.
-
-### Step 8
-
-The application displays:
-
-- ATS Score
-- Score Breakdown
-- Matched Skills
-- Missing Skills
-- Resume Analysis
-- Resume Assessment
-- Resume Preview
-- AI Suggestions
-
----
-
-## 📊 ATS Score Components
-
-| Component | Maximum Score |
-|------------|--------------:|
+| Parameter | Weight |
+|-----------|-------:|
 | Resume Similarity | 30 |
-| Skill Match | 25 |
+| Skills Match | 25 |
 | Experience | 10 |
 | Projects | 10 |
 | Education | 10 |
 | Certifications | 5 |
 | Contact Information | 5 |
 | Resume Length | 5 |
-| **Total** | **100** |
 
 ---
 
-## 🧠 Machine Learning Techniques
+## 📈 Dashboard
 
-- TF-IDF Vectorization
-- Cosine Similarity
-- Keyword Matching
-- Regex Pattern Matching
-- Rule-Based Resume Evaluation
+The application provides interactive visualizations including:
+
+- ATS Score Doughnut Chart
+- Score Breakdown Bar Chart
+- Progress Bars
+- Resume Analysis Dashboard
 
 ---
 
-## 📸 Output
+## 📄 PDF Report
 
-The application provides:
+Users can download a professional report containing:
 
-- ATS Score Dashboard
-- Resume Score Breakdown
+- ATS Score
+- Score Breakdown
 - Matched Skills
 - Missing Skills
 - Resume Strengths
-- Improvement Suggestions
-- Hiring Assessment
-- Resume Preview
+- Areas for Improvement
+- AI Suggestions
+
+---
+
+## 📸 Application Workflow
+
+1. Upload Resume
+2. Enter Job Description
+3. ATS Analysis
+4. Resume Evaluation
+5. Dashboard Visualization
+6. AI Suggestions
+7. Download PDF Report
 
 ---
 
 ## 🔮 Future Enhancements
 
-- 📊 Chart.js Dashboard
-- 📄 PDF Report Download
-- 🌙 Dark Mode
-- 🎤 Voice-Based Resume Analysis
-- ☁️ Cloud Deployment
-- 📈 Resume Ranking for Multiple Candidates
-- 🤖 LLM-Based Resume Review
-- 📧 Email Report Generation
-
----
-
-## 📚 Learning Outcomes
-
-This project demonstrates:
-
-- Flask Web Development
-- Natural Language Processing
-- Machine Learning Basics
-- TF-IDF Vectorization
-- Cosine Similarity
-- Resume Parsing
-- Modular Project Architecture
-- Bootstrap UI Development
-
----
-
-## 🤝 Contributing
-
-Contributions are welcome.
-
-1. Fork the repository.
-2. Create a feature branch.
-3. Commit your changes.
-4. Push the branch.
-5. Create a Pull Request.
-
----
-
-## 📄 License
-
-This project is licensed under the MIT License.
+- Resume Grade (A+, A, B...)
+- Hiring Recommendation
+- Keyword Match Percentage
+- Multiple Resume Comparison
+- User Authentication
+- Resume History
+- Database Integration
+- Cloud Deployment
+- Email Report Sharing
 
 ---
 
@@ -297,8 +217,14 @@ This project is licensed under the MIT License.
 
 **Pragya Pathak**
 
-GitHub: https://github.com/Pragya17pathak
+GitHub:
+https://github.com/Pragya17pathak
+
+LinkedIn:
+https://www.linkedin.com/
 
 ---
 
-⭐ If you found this project helpful, consider giving it a star on GitHub!
+## ⭐ If you like this project
+
+Give this repository a ⭐ on GitHub.

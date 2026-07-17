@@ -49,13 +49,12 @@
 
             <div class="col-lg-3 col-md-6">
 
-                <button
-                    class="btn btn-dark w-100 btn-lg"
-                    onclick="downloadReport()">
+                <a href="/download-report"
+                   class="btn btn-dark w-100 btn-lg">
 
-                    ⬇ Download Report
+                    ⬇ Download PDF Report
 
-                </button>
+                </a>
 
             </div>
 
@@ -196,34 +195,6 @@ function copyReport()
     navigator.clipboard.writeText(report);
 
     alert("Report copied successfully!");
-
-}
-
-function downloadReport()
-
-{
-
-    const report = document.body.innerText;
-
-    const blob = new Blob(
-
-        [report],
-
-        {
-
-            type: "text/plain"
-
-        }
-
-    );
-
-    const link = document.createElement("a");
-
-    link.href = URL.createObjectURL(blob);
-
-    link.download = "AI_Resume_Report.txt";
-
-    link.click();
 
 }
 

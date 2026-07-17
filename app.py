@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request
+from flask import Flask, render_template, request, send_file
 import os
 
 from model.parser import extract_text_from_pdf
@@ -8,6 +8,7 @@ from model.ranker import calculate_ats_score
 from model.suggestions import generate_suggestions
 from model.analyzer import analyze_resume
 from model.report import generate_report
+from model.pdf_report import generate_pdf
 
 app = Flask(__name__)
 
@@ -15,6 +16,10 @@ UPLOAD_FOLDER = "static/uploads"
 app.config["UPLOAD_FOLDER"] = UPLOAD_FOLDER
 
 os.makedirs(UPLOAD_FOLDER, exist_ok=True)
+
+# Store the latest analysis result
+
+latest_result = {}
 
 
 @app.route("/")
@@ -25,6 +30,8 @@ def home():
 
 @app.route("/upload", methods=["POST"])
 def upload_resume():
+
+    global latest_result
 
     if "resume" not in request.files:
 
@@ -138,7 +145,25 @@ def upload_resume():
 
     )
 
-    # Render result page
+    # Save latest analysis for PDF download
+
+    latest_result = {
+
+        "score": ats_score,
+
+        "breakdown": breakdown,
+
+        "matched": matched_skills,
+
+        "missing": missing_skills,
+
+        "strengths": strengths,
+
+        "improvements": improvements,
+
+        "suggestions": suggestions
+
+    }
 
     return render_template(
 
@@ -169,6 +194,44 @@ def upload_resume():
         report_strengths=report_strengths,
 
         recommendations=recommendations
+
+    )
+
+
+@app.route("/download-report")
+def download_report():
+
+    if not latest_result:
+
+        return "No report available."
+
+    filename = "Resume_Report.pdf"
+
+    generate_pdf(
+
+        filename,
+
+        latest_result["score"],
+
+        latest_result["breakdown"],
+
+        latest_result["matched"],
+
+        latest_result["missing"],
+
+        latest_result["strengths"],
+
+        latest_result["improvements"],
+
+        latest_result["suggestions"]
+
+    )
+
+    return send_file(
+
+        filename,
+
+        as_attachment=True
 
     )
 

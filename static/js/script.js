@@ -134,3 +134,205 @@ document.addEventListener("DOMContentLoaded", () => {
     fadeInPage();
 
 });
+
+// ---------- Chart.js Dashboard ----------
+
+document.addEventListener("DOMContentLoaded", () => {
+
+    const atsCanvas = document.getElementById("atsChart");
+
+    const breakdownCanvas = document.getElementById("breakdownChart");
+
+    if (!atsCanvas || !breakdownCanvas) {
+
+        return;
+
+    }
+
+    const score = Number(document.body.dataset.score);
+
+    const breakdown = JSON.parse(document.body.dataset.breakdown);
+
+    new Chart(
+
+        atsCanvas,
+
+        {
+
+            type: "doughnut",
+
+            data: {
+
+                labels: [
+
+                    "ATS Score",
+
+                    "Remaining"
+
+                ],
+
+                datasets: [
+
+                    {
+
+                        data: [
+
+                            score,
+
+                            100 - score
+
+                        ],
+
+                        backgroundColor: [
+
+                            "#0d6efd",
+
+                            "#dee2e6"
+
+                        ],
+
+                        borderWidth: 2
+
+                    }
+
+                ]
+
+            },
+
+            options: {
+
+                responsive: true,
+
+                maintainAspectRatio: true,
+
+                plugins: {
+
+                    legend: {
+
+                        position: "bottom"
+
+                    }
+
+                }
+
+            }
+
+        }
+
+    );
+
+    new Chart(
+
+        breakdownCanvas,
+
+        {
+
+            type: "bar",
+
+            data: {
+
+                labels: [
+
+                    "Similarity",
+
+                    "Skills",
+
+                    "Experience",
+
+                    "Projects",
+
+                    "Education",
+
+                    "Certificates",
+
+                    "Contact",
+
+                    "Length"
+
+                ],
+
+                datasets: [
+
+                    {
+
+                        label: "Score",
+
+                        data: [
+
+                            breakdown.similarity,
+
+                            breakdown.skills,
+
+                            breakdown.experience,
+
+                            breakdown.projects,
+
+                            breakdown.education,
+
+                            breakdown.certifications,
+
+                            breakdown.contact,
+
+                            breakdown.length
+
+                        ],
+
+                        backgroundColor: [
+
+                            "#0d6efd",
+
+                            "#198754",
+
+                            "#0dcaf0",
+
+                            "#ffc107",
+
+                            "#6c757d",
+
+                            "#dc3545",
+
+                            "#212529",
+
+                            "#6610f2"
+
+                        ]
+
+                    }
+
+                ]
+
+            },
+
+            options: {
+
+                responsive: true,
+
+                maintainAspectRatio: true,
+
+                scales: {
+
+                    y: {
+
+                        beginAtZero: true
+
+                    }
+
+                },
+
+                plugins: {
+
+                    legend: {
+
+                        display: false
+
+                    }
+
+                }
+
+            }
+
+        }
+
+    );
+
+});
