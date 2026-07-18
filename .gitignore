@@ -1,11 +1,21 @@
+# Virtual environment
 venv/
+
+# Python cache
 __pycache__/
 *.pyc
 
+# Uploads
 static/uploads/*
+!static/uploads/.gitkeep
+
+# Generated reports
+Resume_Report.pdf
 reports/*
 
-.idea/
+# IDE files
 .vscode/
+.idea/
 
+# OS files
 .DS_Store
