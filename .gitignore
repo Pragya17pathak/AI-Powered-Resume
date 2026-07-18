@@ -1,27 +1,27 @@
-venv/
-
+# Python
 __pycache__/
-
-*.pyc
-
+*.py[cod]
 *.pyo
 
-*.pyd
+# Virtual Environment
+venv/
 
-*.db
-
-*.sqlite3
-
-.env
-
-.idea/
-
+# VS Code
 .vscode/
 
-static/uploads/*
+# Environment Variables
+.env
 
+# Uploaded Files
+static/uploads/*
 !static/uploads/.gitkeep
 
-Resume_Report.pdf
-
+# Logs
 *.log
+
+# OS Files
+.DS_Store
+Thumbs.db
+
+# PDF Reports
+Resume_Report.pdf
