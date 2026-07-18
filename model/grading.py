@@ -8,7 +8,7 @@ def get_resume_grade(score):
 
             "performance": "Outstanding",
 
-            "recommendation": "Highly Recommended",
+            "recommendation": "Your resume is highly optimized and has an excellent chance of passing ATS screening.",
 
             "badge": "success"
 
@@ -22,7 +22,7 @@ def get_resume_grade(score):
 
             "performance": "Excellent",
 
-            "recommendation": "Highly Recommended",
+            "recommendation": "Your resume is well optimized. Only minor improvements may be needed.",
 
             "badge": "success"
 
@@ -36,7 +36,7 @@ def get_resume_grade(score):
 
             "performance": "Good",
 
-            "recommendation": "Recommended",
+            "recommendation": "Your resume is competitive but adding more relevant keywords and skills can improve your ATS score.",
 
             "badge": "primary"
 
@@ -50,7 +50,7 @@ def get_resume_grade(score):
 
             "performance": "Average",
 
-            "recommendation": "Consider Improvements",
+            "recommendation": "Your resume needs additional improvements in skills, formatting, and keyword optimization.",
 
             "badge": "warning"
 
@@ -64,7 +64,7 @@ def get_resume_grade(score):
 
             "performance": "Below Average",
 
-            "recommendation": "Needs Improvement",
+            "recommendation": "Your resume requires significant improvements before applying for most positions.",
 
             "badge": "warning"
 
@@ -78,7 +78,7 @@ def get_resume_grade(score):
 
             "performance": "Poor",
 
-            "recommendation": "Not Recommended",
+            "recommendation": "Your resume is not ATS-friendly. Improve the content, structure, and relevant skills before applying.",
 
             "badge": "danger"
 

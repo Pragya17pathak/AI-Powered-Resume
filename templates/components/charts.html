@@ -1,42 +1,164 @@
-<!-- Resume Analytics -->
+<div class="row g-4 mb-4">
 
-<div class="card shadow-lg border-0 mb-4">
+    <div class="col-lg-6">
 
-    <div class="card-header bg-dark text-white">
+        <div class="card border-0 shadow-lg h-100">
 
-        <h3 class="mb-0">
+            <div class="card-header bg-primary text-white">
 
-            📊 Resume Analytics
+                <h5 class="mb-0">
 
-        </h3>
-
-    </div>
-
-    <div class="card-body">
-
-        <div class="row">
-
-            <div class="col-lg-5">
-
-                <h5 class="text-center mb-3">
-
-                    ATS Score
+                    📊 ATS Score Overview
 
                 </h5>
-
-                <canvas id="atsChart"></canvas>
 
             </div>
 
-            <div class="col-lg-7">
+            <div class="card-body">
 
-                <h5 class="text-center mb-3">
+                <div class="chart-container">
 
-                    Score Breakdown
+                    <canvas id="atsChart"></canvas>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <div class="col-lg-6">
+
+        <div class="card border-0 shadow-lg h-100">
+
+            <div class="card-header bg-success text-white">
+
+                <h5 class="mb-0">
+
+                    📈 Resume Breakdown
 
                 </h5>
 
-                <canvas id="breakdownChart"></canvas>
+            </div>
+
+            <div class="card-body">
+
+                <div class="chart-container">
+
+                    <canvas id="breakdownChart"></canvas>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+<div class="row g-4">
+
+    <div class="col-lg-12">
+
+        <div class="card border-0 shadow-lg">
+
+            <div class="card-header bg-dark text-white">
+
+                <h5 class="mb-0">
+
+                    📋 Resume Performance Summary
+
+                </h5>
+
+            </div>
+
+            <div class="card-body">
+
+                <table class="table table-hover align-middle text-center">
+
+                    <thead>
+
+                        <tr>
+
+                            <th>Category</th>
+
+                            <th>Performance</th>
+
+                        </tr>
+
+                    </thead>
+
+                    <tbody>
+
+                        <tr>
+
+                            <td>Similarity</td>
+
+                            <td>{{ breakdown_percent.similarity }}%</td>
+
+                        </tr>
+
+                        <tr>
+
+                            <td>Skills</td>
+
+                            <td>{{ breakdown_percent.skills }}%</td>
+
+                        </tr>
+
+                        <tr>
+
+                            <td>Experience</td>
+
+                            <td>{{ breakdown_percent.experience }}%</td>
+
+                        </tr>
+
+                        <tr>
+
+                            <td>Projects</td>
+
+                            <td>{{ breakdown_percent.projects }}%</td>
+
+                        </tr>
+
+                        <tr>
+
+                            <td>Education</td>
+
+                            <td>{{ breakdown_percent.education }}%</td>
+
+                        </tr>
+
+                        <tr>
+
+                            <td>Certifications</td>
+
+                            <td>{{ breakdown_percent.certifications }}%</td>
+
+                        </tr>
+
+                        <tr>
+
+                            <td>Contact</td>
+
+                            <td>{{ breakdown_percent.contact }}%</td>
+
+                        </tr>
+
+                        <tr>
+
+                            <td>Resume Length</td>
+
+                            <td>{{ breakdown_percent.length }}%</td>
+
+                        </tr>
+
+                    </tbody>
+
+                </table>
 
             </div>
 

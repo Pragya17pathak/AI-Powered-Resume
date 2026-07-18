@@ -6,112 +6,86 @@ function toggleTheme() {
 
     body.classList.toggle("dark");
 
-    const currentTheme = body.classList.contains("dark")
+    const theme = body.classList.contains("dark")
+
         ? "dark"
+
         : "light";
 
-    localStorage.setItem("theme", currentTheme);
+    localStorage.setItem(
 
-    updateThemeButton(currentTheme);
+        "theme",
+
+        theme
+
+    );
+
+    updateThemeButton(theme);
 
 }
 
-// ---------- Update Theme Button ----------
+
+// ---------- Theme Button ----------
 
 function updateThemeButton(theme) {
 
-    const btn = document.getElementById("themeBtn");
+    const btn = document.getElementById(
 
-    if (!btn) return;
+        "themeBtn"
 
-    if (theme === "dark") {
+    );
 
-        btn.innerHTML = "☀️ Light Mode";
+    if (!btn) {
 
-    } else {
-
-        btn.innerHTML = "🌙 Dark Mode";
+        return;
 
     }
 
+    btn.innerHTML =
+
+        theme === "dark"
+
+            ? "☀️ Light Mode"
+
+            : "🌙 Dark Mode";
+
 }
 
-// ---------- Apply Saved Theme ----------
+
+// ---------- Load Theme ----------
 
 function loadTheme() {
 
-    const savedTheme = localStorage.getItem("theme");
+    const theme =
 
-    if (savedTheme === "dark") {
+        localStorage.getItem("theme")
 
-        document.body.classList.add("dark");
+        || "light";
 
-        updateThemeButton("dark");
+    if (theme === "dark") {
 
-    } else {
+        document.body.classList.add(
 
-        document.body.classList.remove("dark");
+            "dark"
 
-        updateThemeButton("light");
+        );
 
     }
 
-}
-
-// ---------- Animate ATS Progress Bar ----------
-
-function animateProgressBar() {
-
-    const progressBar = document.getElementById("scoreBar");
-
-    if (!progressBar) return;
-
-    const score = progressBar.dataset.score;
-
-    progressBar.style.width = "0%";
-
-    setTimeout(() => {
-
-        progressBar.style.transition = "width 1.2s ease-in-out";
-
-        progressBar.style.width = score + "%";
-
-    }, 300);
+    updateThemeButton(theme);
 
 }
 
-// ---------- Card Hover Animation ----------
 
-function addCardAnimation() {
-
-    const cards = document.querySelectorAll(".card");
-
-    cards.forEach(card => {
-
-        card.addEventListener("mouseenter", () => {
-
-            card.style.transform = "translateY(-5px)";
-            card.style.transition = "0.3s";
-
-        });
-
-        card.addEventListener("mouseleave", () => {
-
-            card.style.transform = "translateY(0px)";
-
-        });
-
-    });
-
-}
-
-// ---------- Fade In Page ----------
+// ---------- Fade In ----------
 
 function fadeInPage() {
 
     document.body.style.opacity = "0";
 
-    document.body.style.transition = "opacity 0.5s";
+    document.body.style.transition =
+
+        "opacity .6s ease";
 
     setTimeout(() => {
 
@@ -121,95 +95,706 @@ function fadeInPage() {
 
 }
 
-// ---------- Initialize Everything ----------
 
-document.addEventListener("DOMContentLoaded", () => {
+// ---------- Progress Bars ----------
 
-    loadTheme();
+function animateProgressBars() {
 
-    animateProgressBar();
+    const bars = document.querySelectorAll(
 
-    addCardAnimation();
+        ".progress-bar[data-width]"
 
-    fadeInPage();
+    );
 
-});
+    bars.forEach(bar => {
 
-// ---------- Chart.js Dashboard ----------
+        const width =
 
-document.addEventListener("DOMContentLoaded", () => {
+            Number(
 
-    const atsCanvas = document.getElementById("atsChart");
+                bar.dataset.width
 
-    const breakdownCanvas = document.getElementById("breakdownChart");
+            ) || 0;
 
-    if (!atsCanvas || !breakdownCanvas) {
+        bar.style.width = "0%";
+
+        setTimeout(() => {
+
+            bar.style.transition =
+
+                "width 1.5s ease";
+
+            bar.style.width =
+
+                width + "%";
+
+        }, 300);
+
+    });
+
+}
+
+
+// ---------- Card Hover ----------
+
+function addCardAnimation() {
+
+    document
+
+        .querySelectorAll(".card")
+
+        .forEach(card => {
+
+            card.addEventListener(
+
+                "mouseenter",
+
+                () => {
+
+                    card.style.transition =
+
+                        ".3s";
+
+                    card.style.transform =
+
+                        "translateY(-8px)";
+
+                    card.style.boxShadow =
+
+                        "0 20px 40px rgba(124,58,237,.25)";
+
+                }
+
+            );
+
+            card.addEventListener(
+
+                "mouseleave",
+
+                () => {
+
+                    card.style.transform =
+
+                        "translateY(0)";
+
+                    card.style.boxShadow = "";
+
+                }
+
+            );
+
+        });
+
+}
+
+
+// ---------- Counter Animation ----------
+
+function animateCounters() {
+
+    const counters = document.querySelectorAll(
+
+        "[data-counter]"
+
+    );
+
+    counters.forEach(counter => {
+
+        const target = Number(
+
+            counter.dataset.counter
+
+        ) || 0;
+
+        let current = 0;
+
+        const increment = Math.max(
+
+            1,
+
+            Math.ceil(
+
+                target / 60
+
+            )
+
+        );
+
+        const timer = setInterval(() => {
+
+            current += increment;
+
+            if (current >= target) {
+
+                current = target;
+
+                clearInterval(timer);
+
+            }
+
+            if (
+
+                counter.dataset.percent
+
+            ) {
+
+                counter.textContent =
+
+                    current + "%";
+
+            }
+
+            else {
+
+                counter.textContent =
+
+                    current;
+
+            }
+
+        }, 20);
+
+    });
+
+}
+
+
+// ---------- Badge Hover ----------
+
+function animateBadges() {
+
+    document
+
+        .querySelectorAll(".badge")
+
+        .forEach(badge => {
+
+            badge.addEventListener(
+
+                "mouseenter",
+
+                () => {
+
+                    badge.style.transform =
+
+                        "scale(1.08)";
+
+                    badge.style.transition =
+
+                        ".25s";
+
+                }
+
+            );
+
+            badge.addEventListener(
+
+                "mouseleave",
+
+                () => {
+
+                    badge.style.transform =
+
+                        "scale(1)";
+
+                }
+
+            );
+
+        });
+
+}
+
+
+// ---------- Copy Resume ----------
+
+function copyResumeText() {
+
+    const preview =
+
+        document.getElementById(
+
+            "resumePreview"
+
+        );
+
+    if (!preview) {
 
         return;
 
     }
 
-    const score = Number(document.body.dataset.score);
+    navigator.clipboard.writeText(
 
-    const breakdown = JSON.parse(document.body.dataset.breakdown);
+        preview.innerText
 
-    new Chart(
+    );
 
-        atsCanvas,
+    const btn =
 
-        {
+        document.getElementById(
 
-            type: "doughnut",
+            "copyBtn"
 
-            data: {
+        );
 
-                labels: [
+    if (btn) {
 
-                    "ATS Score",
+        const original =
 
-                    "Remaining"
+            btn.innerHTML;
 
-                ],
+        btn.innerHTML =
 
-                datasets: [
+            "✅ Copied";
 
-                    {
+        setTimeout(() => {
 
-                        data: [
+            btn.innerHTML =
 
-                            score,
+                original;
 
-                            100 - score
+        }, 2000);
 
-                        ],
+    }
 
-                        backgroundColor: [
+}
 
-                            "#0d6efd",
 
-                            "#dee2e6"
+// ---------- Print ----------
 
-                        ],
+function printReport() {
 
-                        borderWidth: 2
+    window.print();
 
-                    }
+}
 
-                ]
+
+// ---------- Scroll Top ----------
+
+function scrollToTop() {
+
+    window.scrollTo({
+
+        top: 0,
+
+        behavior: "smooth"
+
+    });
+
+}
+
+
+// ---------- Scroll Button ----------
+
+function initializeScrollButton() {
+
+    const topBtn =
+
+        document.getElementById(
+
+            "topBtn"
+
+        );
+
+    if (!topBtn) {
+
+        return;
+
+    }
+
+    topBtn.style.display =
+
+        "none";
+
+    window.addEventListener(
+
+        "scroll",
+
+        () => {
+
+            if (
+
+                window.scrollY > 300
+
+            ) {
+
+                topBtn.style.display =
+
+                    "block";
+
+            }
+
+            else {
+
+                topBtn.style.display =
+
+                    "none";
+
+            }
+
+        }
+
+    );
+
+}
+
+
+// ---------- Loading Overlay ----------
+
+function initializeLoader() {
+
+    const form =
+
+        document.querySelector(
+
+            "form"
+
+        );
+
+    if (!form) {
+
+        return;
+
+    }
+
+    form.addEventListener(
+
+        "submit",
+
+        () => {
+
+            const loader =
+
+                document.getElementById(
+
+                    "loadingOverlay"
+
+                );
+
+            if (loader) {
+
+                loader.style.display =
+
+                    "flex";
+
+            }
+
+        }
+
+    );
+
+}
+// ---------- ATS Doughnut Chart ----------
+
+function createATSChart() {
+
+    const canvas = document.getElementById(
+
+        "atsChart"
+
+    );
+
+    if (!canvas) {
+
+        return;
+
+    }
+
+    Chart.getChart(canvas)?.destroy();
+
+    const score = Number(
+
+        document.body.dataset.score || 0
+
+    );
+
+    const centerText = {
+
+        id: "centerText",
+
+        afterDraw(chart) {
+
+            const {
+
+                ctx,
+
+                chartArea
+
+            } = chart;
+
+            ctx.save();
+
+            ctx.font = "bold 34px Arial";
+
+            ctx.fillStyle = "#7C3AED";
+
+            ctx.textAlign = "center";
+
+            ctx.textBaseline = "middle";
+
+            ctx.fillText(
+
+                score + "%",
+
+                (chartArea.left + chartArea.right) / 2,
+
+                (chartArea.top + chartArea.bottom) / 2
+
+            );
+
+            ctx.restore();
+
+        }
+
+    };
+
+    new Chart(canvas, {
+
+        type: "doughnut",
+
+        data: {
+
+            labels: [
+
+                "ATS Score",
+
+                "Remaining"
+
+            ],
+
+            datasets: [
+
+                {
+
+                    data: [
+
+                        score,
+
+                        100 - score
+
+                    ],
+
+                    backgroundColor: [
+
+                        "#7C3AED",
+
+                        "#DDD6FE"
+
+                    ],
+
+                    borderWidth: 0,
+
+                    hoverOffset: 10
+
+                }
+
+            ]
+
+        },
+
+        options: {
+
+            responsive: true,
+
+            cutout: "72%",
+
+            animation: {
+
+                duration: 1800
 
             },
 
-            options: {
+            plugins: {
 
-                responsive: true,
+                legend: {
 
-                maintainAspectRatio: true,
+                    position: "bottom"
 
-                plugins: {
+                }
 
-                    legend: {
+            }
 
-                        position: "bottom"
+        },
+
+        plugins: [
+
+            centerText
+
+        ]
+
+    });
+
+}
+
+
+// ---------- Breakdown Radar Chart ----------
+
+function createBreakdownChart() {
+
+    const canvas = document.getElementById(
+
+        "breakdownChart"
+
+    );
+
+    if (!canvas) {
+
+        return;
+
+    }
+
+    Chart.getChart(canvas)?.destroy();
+
+    let breakdown = {};
+
+    try {
+
+        breakdown = JSON.parse(
+
+            document.body.dataset.breakdown || "{}"
+
+        );
+
+    }
+
+    catch {
+
+        breakdown = {};
+
+    }
+
+    new Chart(canvas, {
+
+        type: "radar",
+
+        data: {
+
+            labels: [
+
+                "Similarity",
+
+                "Skills",
+
+                "Experience",
+
+                "Projects",
+
+                "Education",
+
+                "Certificates",
+
+                "Contact",
+
+                "Length"
+
+            ],
+
+            datasets: [
+
+                {
+
+                    label: "Resume Analysis",
+
+                    data: [
+
+                        breakdown.similarity || 0,
+
+                        breakdown.skills || 0,
+
+                        breakdown.experience || 0,
+
+                        breakdown.projects || 0,
+
+                        breakdown.education || 0,
+
+                        breakdown.certifications || 0,
+
+                        breakdown.contact || 0,
+
+                        breakdown.length || 0
+
+                    ],
+
+                    backgroundColor:
+
+                        "rgba(124,58,237,.20)",
+
+                    borderColor:
+
+                        "#7C3AED",
+
+                    borderWidth: 3,
+
+                    pointBackgroundColor:
+
+                        "#7C3AED",
+
+                    pointRadius: 5
+
+                }
+
+            ]
+
+        },
+
+        options: {
+
+            responsive: true,
+
+            animation: {
+
+                duration: 2000
+
+            },
+
+            plugins: {
+
+                legend: {
+
+                    display: false
+
+                }
+
+            },
+
+            scales: {
+
+                r: {
+
+                    beginAtZero: true,
+
+                    suggestedMax: 30,
+
+                    grid: {
+
+                        color:
+
+                            "#D8B4FE"
+
+                    },
+
+                    angleLines: {
+
+                        color:
+
+                            "#D8B4FE"
+
+                    },
+
+                    pointLabels: {
+
+                        color:
+
+                            "#6D28D9",
+
+                        font: {
+
+                            size: 12,
+
+                            weight: "bold"
+
+                        }
 
                     }
 
@@ -219,120 +804,112 @@ document.addEventListener("DOMContentLoaded", () => {
 
         }
 
-    );
+    });
 
-    new Chart(
+}
 
-        breakdownCanvas,
 
-        {
+// ---------- Initialize Charts ----------
 
-            type: "bar",
+function initializeCharts() {
 
-            data: {
+    createATSChart();
 
-                labels: [
+    createBreakdownChart();
 
-                    "Similarity",
+}
 
-                    "Skills",
 
-                    "Experience",
+// ---------- Initialize Everything ----------
 
-                    "Projects",
+document.addEventListener(
 
-                    "Education",
+    "DOMContentLoaded",
 
-                    "Certificates",
+    () => {
 
-                    "Contact",
+        loadTheme();
 
-                    "Length"
+        fadeInPage();
 
-                ],
+        animateProgressBars();
 
-                datasets: [
+        animateCounters();
 
-                    {
+        addCardAnimation();
 
-                        label: "Score",
+        animateBadges();
 
-                        data: [
+        initializeCharts();
 
-                            breakdown.similarity,
+        initializeLoader();
 
-                            breakdown.skills,
+        initializeScrollButton();
 
-                            breakdown.experience,
+        document
 
-                            breakdown.projects,
+            .getElementById(
 
-                            breakdown.education,
+                "printBtn"
 
-                            breakdown.certifications,
+            )
 
-                            breakdown.contact,
+            ?.addEventListener(
 
-                            breakdown.length
+                "click",
 
-                        ],
+                printReport
 
-                        backgroundColor: [
+            );
 
-                            "#0d6efd",
+        document
 
-                            "#198754",
+            .getElementById(
 
-                            "#0dcaf0",
+                "copyBtn"
 
-                            "#ffc107",
+            )
 
-                            "#6c757d",
+            ?.addEventListener(
 
-                            "#dc3545",
+                "click",
 
-                            "#212529",
+                copyResumeText
 
-                            "#6610f2"
+            );
 
-                        ]
+        document
 
-                    }
+            .getElementById(
 
-                ]
+                "topBtn"
 
-            },
+            )
 
-            options: {
+            ?.addEventListener(
 
-                responsive: true,
+                "click",
 
-                maintainAspectRatio: true,
+                scrollToTop
 
-                scales: {
+            );
 
-                    y: {
+        document
 
-                        beginAtZero: true
+            .getElementById(
 
-                    }
+                "themeBtn"
 
-                },
+            )
 
-                plugins: {
+            ?.addEventListener(
 
-                    legend: {
+                "click",
 
-                        display: false
+                toggleTheme
 
-                    }
+            );
 
-                }
+    }
 
-            }
-
-        }
-
-    );
-
-});
+);

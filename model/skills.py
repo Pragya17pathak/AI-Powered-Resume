@@ -17,9 +17,9 @@ SKILLS = (
 
     .astype(str)
 
-    .str.strip()
-
     .str.lower()
+
+    .str.strip()
 
     .unique()
 
@@ -27,35 +27,167 @@ SKILLS = (
 
 )
 
+# Skill synonyms
+
+SYNONYMS = {
+
+    "ai": "artificial intelligence",
+
+    "artificial intelligence": "artificial intelligence",
+
+    "machine learning": "machine learning",
+
+    "ml": "machine learning",
+
+    "deep learning": "deep learning",
+
+    "dl": "deep learning",
+
+    "nlp": "natural language processing",
+
+    "natural language processing": "natural language processing",
+
+    "javascript": "javascript",
+
+    "js": "javascript",
+
+    "reactjs": "react",
+
+    "react": "react",
+
+    "nodejs": "node",
+
+    "node.js": "node",
+
+    "node": "node",
+
+    "postgres": "postgresql",
+
+    "postgresql": "postgresql",
+
+    "mysql": "mysql",
+
+    "sql": "sql",
+
+    "rest": "rest api",
+
+    "restful api": "rest api",
+
+    "rest api": "rest api",
+
+    "oop": "object oriented programming",
+
+    "object oriented programming": "object oriented programming",
+
+    "aws": "amazon web services",
+
+    "amazon web services": "amazon web services",
+
+    "azure": "microsoft azure",
+
+    "microsoft azure": "microsoft azure",
+
+    "github": "github",
+
+    "git": "git",
+
+    "docker": "docker",
+
+    "kubernetes": "kubernetes",
+
+    "tensorflow": "tensorflow",
+
+    "pytorch": "pytorch",
+
+    "numpy": "numpy",
+
+    "pandas": "pandas",
+
+    "scikit learn": "scikit-learn",
+
+    "scikit-learn": "scikit-learn",
+
+    "flask": "flask",
+
+    "django": "django",
+
+    "html": "html",
+
+    "css": "css",
+
+    "bootstrap": "bootstrap",
+
+    "linux": "linux",
+
+    "c++": "c++",
+
+    "cpp": "c++",
+
+    "c#": "c#",
+
+    "java": "java",
+
+    "python": "python"
+
+}
+
+
+def normalize_skill(skill):
+
+    skill = skill.lower().strip()
+
+    return SYNONYMS.get(
+
+        skill,
+
+        skill
+
+    )
+
 
 def extract_skills(text):
-    # Return empty list for invalid input
 
     if not text:
 
         return []
 
-    # Normalize resume text
-
     text = text.lower()
 
-    text = re.sub(r"[^\w\s#+.-]", " ", text)
+    text = re.sub(
+
+        r"[^\w\s#+.-]",
+
+        " ",
+
+        text
+
+    )
 
     doc = nlp(text)
 
-    found_skills = set()
+    found = set()
 
-    # Match complete skills
+    # Match multi-word skills
 
     for skill in SKILLS:
 
         pattern = r"\b" + re.escape(skill) + r"\b"
 
-        if re.search(pattern, text):
+        if re.search(
 
-            found_skills.add(skill.title())
+            pattern,
 
-    # Match single-word skills
+            text
+
+        ):
+
+            found.add(
+
+                normalize_skill(skill)
+
+            )
+
+    # Match token skills
 
     tokens = {
 
@@ -67,12 +199,22 @@ def extract_skills(text):
 
     }
 
-    for skill in SKILLS:
+    for token in tokens:
 
-        if " " not in skill and skill in tokens:
+        token = normalize_skill(token)
 
-            found_skills.add(skill.title())
+        if token in SKILLS or token in SYNONYMS.values():
 
-    # Return sorted skills
+            found.add(token)
 
-    return sorted(found_skills)
+    return sorted(
+
+        {
+
+            skill.title()
+
+            for skill in found
+
+        }
+
+    )

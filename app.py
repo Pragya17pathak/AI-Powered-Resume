@@ -14,11 +14,10 @@ from model.grading import get_resume_grade
 app = Flask(__name__)
 
 UPLOAD_FOLDER = "static/uploads"
+
 app.config["UPLOAD_FOLDER"] = UPLOAD_FOLDER
 
 os.makedirs(UPLOAD_FOLDER, exist_ok=True)
-
-# Store the latest analysis result
 
 latest_result = {}
 
@@ -54,31 +53,15 @@ def upload_resume():
 
     file.save(filepath)
 
-    # Extract resume text
-
     extracted_text = extract_text_from_pdf(filepath)
-
-    # Preprocess text
 
     clean_text = preprocess_text(extracted_text)
 
-    # Extract skills
-
     skills = extract_skills(clean_text)
-
-    # Get job description
 
     job_description = request.form["job_description"]
 
-    # Calculate ATS score
-
-    (
-        ats_score,
-        matched_skills,
-        missing_skills,
-        breakdown
-
-    ) = calculate_ats_score(
+    ats_score, matched_skills, missing_skills, breakdown = calculate_ats_score(
 
         clean_text,
 
@@ -86,11 +69,7 @@ def upload_resume():
 
     )
 
-    # Calculate resume grade
-
-    grade = get_resume_grade(ats_score)
-
-    # Calculate percentage values for progress bars
+    grade_data = get_resume_grade(ats_score)
 
     breakdown_percent = {
 
@@ -112,7 +91,9 @@ def upload_resume():
 
     }
 
-    # Generate AI suggestions
+    keyword_match = breakdown.get("keyword_match", 0)
+
+    similarity_percentage = breakdown.get("similarity_percentage", 0)
 
     suggestions = generate_suggestions(
 
@@ -121,8 +102,6 @@ def upload_resume():
         extracted_text
 
     )
-
-    # Analyze resume
 
     strengths, improvements = analyze_resume(
 
@@ -136,8 +115,6 @@ def upload_resume():
 
     )
 
-    # Generate AI report
-
     report, report_strengths, recommendations = generate_report(
 
         ats_score,
@@ -150,13 +127,17 @@ def upload_resume():
 
     )
 
-    # Save latest analysis
-
     latest_result = {
 
         "score": ats_score,
 
-        "grade": grade,
+        "grade": grade_data["grade"],
+
+        "performance": grade_data["performance"],
+
+        "recommendation": grade_data["recommendation"],
+
+        "badge": grade_data["badge"],
 
         "breakdown": breakdown,
 
@@ -168,7 +149,11 @@ def upload_resume():
 
         "improvements": improvements,
 
-        "suggestions": suggestions
+        "suggestions": suggestions,
+
+        "keyword_match": keyword_match,
+
+        "similarity_percentage": similarity_percentage
 
     }
 
@@ -182,7 +167,13 @@ def upload_resume():
 
         score=ats_score,
 
-        grade=grade,
+        grade=grade_data["grade"],
+
+        performance=grade_data["performance"],
+
+        recommendation=grade_data["recommendation"],
+
+        badge=grade_data["badge"],
 
         matched=matched_skills,
 
@@ -202,7 +193,11 @@ def upload_resume():
 
         report_strengths=report_strengths,
 
-        recommendations=recommendations
+        recommendations=recommendations,
+
+        keyword_match=keyword_match,
+
+        similarity_percentage=similarity_percentage
 
     )
 
@@ -246,5 +241,8 @@ def download_report():
 
 
 if __name__ == "__main__":
-
-    app.run(debug=True)
+    app.run(
+        host="0.0.0.0",
+        port=int(os.environ.get("PORT", 5000)),
+        debug=False
+    )

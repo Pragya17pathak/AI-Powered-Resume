@@ -1,71 +1,82 @@
-# 🤖 AI-Powered Resume Ranker
+# 🚀 AI-Powered Resume Ranker
 
-An AI-powered Resume Ranking and ATS (Applicant Tracking System) Analyzer built using **Flask**, **Python**, **Machine Learning**, **spaCy**, **Scikit-learn**, and **Chart.js**. The application evaluates resumes against a job description, calculates an ATS score, assigns a resume grade, provides hiring recommendations, extracts skills, generates AI-powered suggestions, visualizes analytics, and allows users to download a professional PDF report.
+An intelligent **ATS (Applicant Tracking System) Resume Analyzer** built with **Python, Flask, Machine Learning, and Chart.js**. The application compares a resume with a job description, calculates an ATS compatibility score, identifies matched and missing skills, provides personalized suggestions, assigns a resume grade, and generates a professional PDF report.
 
 ---
 
-## 🚀 Features
-
-### Resume Analysis
+## 📌 Features
 
 - 📄 Upload Resume (PDF)
-- 📝 Analyze Resume against Job Description
+- 📝 Job Description Matching
 - 🎯 ATS Score Calculation
-- 🏆 Resume Grade (A+, A, B, C, D, F)
-- 💼 Hiring Recommendation
-- 📊 Resume Quality Assessment
-
-### Skill Analysis
-
-- ✅ Skill Extraction
-- ✔️ Matched Skills Detection
+- 🏆 Resume Grade (A+ to F)
+- 📊 Interactive Charts
+- ✅ Matched Skills Detection
 - ❌ Missing Skills Detection
-- 🤖 AI Resume Analysis
-- 💡 AI Improvement Suggestions
-
-### Dashboard
-
-- 📈 ATS Score Dashboard
-- 🍩 Doughnut Chart Visualization
-- 📊 Score Breakdown Bar Chart
-- 📉 Progress Indicators
-- 📱 Responsive Interface
-
-### Report Generation
-
-- 📄 Resume Preview
-- 📥 Download PDF Report
-- 🖨 Print Report
-- 📋 Copy Report Summary
-
-### User Experience
-
-- 🌙 Light/Dark Theme
-- 📱 Fully Responsive Bootstrap UI
-- ⚡ Fast Resume Processing
+- 💡 AI Resume Improvement Suggestions
+- 📈 Resume Similarity Score
+- 📚 Resume Statistics Dashboard
+- 📑 Professional PDF Report
+- 🌙 Dark Mode Support
+- 📱 Responsive Modern UI
+- 🎨 Glassmorphism Dashboard
+- ⚡ Animated Charts & Progress Bars
 
 ---
 
-## 🛠 Tech Stack
+## 🖥️ Screenshots
 
-### Backend
+### 🏠 Home Page
 
-- Python
-- Flask
+> Add screenshot here
 
-### Machine Learning & NLP
+```
+static/screenshots/home.png
+```
 
-- Scikit-learn
-- spaCy
+---
 
-### PDF Processing
+### 📊 Dashboard
 
-- pdfplumber
-- ReportLab
+> Add screenshot here
 
-### Data Visualization
+```
+static/screenshots/dashboard.png
+```
 
-- Chart.js
+---
+
+### 📈 Charts
+
+> Add screenshot here
+
+```
+static/screenshots/charts.png
+```
+
+---
+
+### 💡 Suggestions
+
+> Add screenshot here
+
+```
+static/screenshots/suggestions.png
+```
+
+---
+
+### 📄 Resume Preview
+
+> Add screenshot here
+
+```
+static/screenshots/preview.png
+```
+
+---
+
+## 🛠️ Technologies Used
 
 ### Frontend
 
@@ -73,96 +84,152 @@ An AI-powered Resume Ranking and ATS (Applicant Tracking System) Analyzer built 
 - CSS3
 - Bootstrap 5
 - JavaScript
+- Chart.js
+
+### Backend
+
+- Python
+- Flask
+
+### Machine Learning
+
+- Scikit-learn
+- TF-IDF Vectorizer
+- Cosine Similarity
+
+### Libraries
+
+- PyPDF2
+- ReportLab
+- NumPy
+- Pandas
 
 ---
 
 ## 📂 Project Structure
 
 ```
-AI-Powered Resume Ranker/
+AI-Powered-Resume-Ranker/
+
 │
-├── app.py
-│
+
 ├── model/
+
 │   ├── analyzer.py
+
 │   ├── grading.py
+
 │   ├── parser.py
+
 │   ├── pdf_report.py
+
 │   ├── preprocess.py
+
 │   ├── ranker.py
+
 │   ├── report.py
+
 │   ├── skills.py
+
 │   └── suggestions.py
+
 │
+
 ├── static/
+
 │   ├── css/
+
 │   │   └── style.css
+
+│   │
+
 │   ├── js/
+
 │   │   └── script.js
-│   └── uploads/
+
+│   │
+
+│   ├── uploads/
+
+│   │
+
+│   └── screenshots/
+
 │
+
 ├── templates/
+
+│   ├── components/
+
+│   │
+
 │   ├── index.html
-│   ├── result.html
-│   └── components/
-│       ├── dashboard.html
-│       ├── grading.html
-│       ├── charts.html
-│       ├── breakdown.html
-│       ├── skills.html
-│       ├── analysis.html
-│       ├── assessment.html
-│       ├── preview.html
-│       └── actions.html
+
+│   └── result.html
+
 │
+
+├── app.py
+
 ├── requirements.txt
-└── README.md
+
+├── README.md
+
+└── Resume_Report.pdf
+
 ```
 
 ---
 
-## ⚙ Installation
+# ⚙️ Installation
 
-### Clone Repository
+## 1️⃣ Clone Repository
 
 ```bash
 git clone https://github.com/Pragya17pathak/AI-Powered-Resume.git
+
 cd AI-Powered-Resume
 ```
 
-### Create Virtual Environment
+---
 
-```bash
-python -m venv venv
-```
-
-### Activate Virtual Environment
+## 2️⃣ Create Virtual Environment
 
 Windows
 
 ```bash
+python -m venv venv
+
 venv\Scripts\activate
 ```
 
 Linux / macOS
 
 ```bash
+python3 -m venv venv
+
 source venv/bin/activate
 ```
 
-### Install Dependencies
+---
+
+## 3️⃣ Install Dependencies
 
 ```bash
 pip install -r requirements.txt
 ```
 
-### Run the Application
+---
+
+## 4️⃣ Run Application
 
 ```bash
 python app.py
 ```
 
-Open your browser:
+---
+
+## 5️⃣ Open Browser
 
 ```
 http://127.0.0.1:5000
@@ -170,10 +237,58 @@ http://127.0.0.1:5000
 
 ---
 
-## 📊 ATS Scoring Parameters
+# 🚀 How It Works
 
-| Parameter | Weight |
-|-----------|-------:|
+```
+Upload Resume
+
+↓
+
+Extract Resume Text
+
+↓
+
+Clean & Preprocess Text
+
+↓
+
+Extract Skills
+
+↓
+
+Compare With Job Description
+
+↓
+
+Calculate ATS Score
+
+↓
+
+Find Missing Skills
+
+↓
+
+Generate Suggestions
+
+↓
+
+Assign Resume Grade
+
+↓
+
+Generate PDF Report
+
+↓
+
+Display Interactive Dashboard
+```
+
+---
+
+# 📊 ATS Score Breakdown
+
+| Category | Weight |
+|-----------|--------|
 | Resume Similarity | 30 |
 | Skills Match | 25 |
 | Experience | 10 |
@@ -185,94 +300,96 @@ http://127.0.0.1:5000
 
 ---
 
-## 🏆 Resume Evaluation
+# 🎯 Resume Grades
 
-Every analyzed resume receives:
-
-- ATS Score
-- Resume Grade
-- Performance Level
-- Hiring Recommendation
-
-Example:
-
-```
-ATS Score: 88%
-
-Grade: A
-
-Performance: Excellent
-
-Recommendation: Highly Recommended
-```
+| ATS Score | Grade |
+|-----------|-------|
+| 95 - 100 | A+ |
+| 85 - 94 | A |
+| 75 - 84 | B |
+| 65 - 74 | C |
+| 50 - 64 | D |
+| Below 50 | F |
 
 ---
 
-## 📈 Dashboard
-
-Interactive dashboard includes:
-
-- ATS Score Doughnut Chart
-- Score Breakdown Bar Chart
-- Progress Bars
-- Resume Analytics
-- Resume Evaluation Card
-
----
-
-## 📄 Downloadable PDF Report
-
-The generated report includes:
+# 📄 Generated Report Includes
 
 - ATS Score
 - Resume Grade
-- Hiring Recommendation
-- Score Breakdown
+- Resume Similarity
+- Keyword Match
 - Matched Skills
 - Missing Skills
-- Resume Strengths
-- Areas for Improvement
-- AI Suggestions
+- Strengths
+- Weaknesses
+- Resume Suggestions
+- Resume Statistics
 
 ---
 
-## 📸 Workflow
+# 💡 Future Enhancements
 
-1. Upload Resume
-2. Enter Job Description
-3. Resume Parsing
-4. ATS Analysis
-5. Resume Evaluation
-6. Dashboard Visualization
-7. AI Suggestions
-8. Download Professional PDF Report
-
----
-
-## 🔮 Future Enhancements
-
-- Keyword Match Percentage
-- Resume Section Rating
-- Resume Comparison
-- AI Resume Rewriter
-- Resume History
-- User Authentication
-- Database Integration
+- AI Resume Rewriting
+- Cover Letter Generator
+- Resume Ranking Against Multiple Jobs
+- LinkedIn Profile Analyzer
+- Resume Keyword Optimizer
+- AI Career Recommendation System
+- Interview Question Generator
+- Multi-language Resume Analysis
+- Resume Templates
 - Cloud Deployment
-- Email Report Sharing
 
 ---
 
-## 👩‍💻 Author
+# 📚 Learning Outcomes
+
+This project demonstrates practical implementation of:
+
+- Machine Learning
+- Natural Language Processing
+- Text Similarity
+- Resume Parsing
+- PDF Processing
+- Flask Web Development
+- Interactive Data Visualization
+- Responsive UI Design
+
+---
+
+# 👩‍💻 Author
 
 **Pragya Pathak**
 
-GitHub
+B.Tech Computer Science Engineering
 
-https://github.com/Pragya17pathak
+Lovely Professional University
 
 ---
 
-## ⭐ Support
+## 🔗 Connect With Me
 
-If you found this project helpful, please consider giving it a ⭐ on GitHub.
+**GitHub**
+
+https://github.com/Pragya17pathak
+
+**LinkedIn**
+
+Add your LinkedIn profile here
+
+---
+
+# ⭐ If you like this project
+
+Please consider giving this repository a ⭐ on GitHub.
+
+It motivates me to build more open-source projects.
+
+---
+
+# 📜 License
+
+This project is licensed under the MIT License.
+
+Feel free to use and modify it for learning purposes.
