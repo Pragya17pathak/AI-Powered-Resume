@@ -2,40 +2,84 @@ import re
 import spacy
 
 # Load spaCy English model
+
 nlp = spacy.load("en_core_web_sm")
 
 
 def preprocess_text(text):
-    """
-    Cleans and preprocesses resume text.
-    """
+
+    if not text:
+
+        return ""
 
     # Convert to lowercase
+
     text = text.lower()
 
-    # Remove special characters except +, # and .
-    text = re.sub(r"[^a-z0-9+#.\s]", " ", text)
+    # Remove URLs
 
-    # Process with spaCy
+    text = re.sub(
+        r"http\S+|www\S+",
+        " ",
+        text
+    )
+
+    # Remove email addresses
+
+    text = re.sub(
+        r"\S+@\S+",
+        " ",
+        text
+    )
+
+    # Remove phone numbers
+
+    text = re.sub(
+        r"\+?\d[\d\s\-]{8,}",
+        " ",
+        text
+    )
+
+    # Remove punctuation and numbers
+
+    text = re.sub(
+        r"[^a-z\s]",
+        " ",
+        text
+    )
+
+    # Remove extra spaces
+
+    text = re.sub(
+        r"\s+",
+        " ",
+        text
+    ).strip()
+
+    # Process using spaCy
+
     doc = nlp(text)
 
     cleaned_words = []
 
     for token in doc:
 
-        # Remove stopwords
         if token.is_stop:
+
             continue
 
-        # Remove punctuation
-        if token.is_punct:
-            continue
-
-        # Remove spaces
         if token.is_space:
+
             continue
 
-        # Lemmatization
-        cleaned_words.append(token.lemma_)
+        if len(token.text) <= 1:
 
-    return " ".join(cleaned_words)
+            continue
+
+        cleaned_words.append(
+            token.lemma_
+        )
+
+    cleaned_text = " ".join(cleaned_words)
+
+    return cleaned_text
