@@ -1,220 +1,33 @@
 import re
 
-import pandas as pd
-import spacy
+SKILLS = ['python', 'java', 'c', 'c++', 'c#', 'html', 'css', 'javascript', 'typescript', 'react', 'angular', 'vue', 'node.js', 'express', 'flask', 'django', 'fastapi', 'spring boot', 'php', 'sql', 'mysql', 'postgresql', 'mongodb', 'sqlite', 'oracle', 'git', 'github', 'docker', 'kubernetes', 'aws', 'amazon web services', 'azure', 'microsoft azure', 'google cloud', 'machine learning', 'deep learning', 'artificial intelligence', 'natural language processing', 'computer vision', 'tensorflow', 'keras', 'pytorch', 'scikit-learn', 'pandas', 'numpy', 'scipy', 'matplotlib', 'seaborn', 'opencv', 'feature engineering', 'data preprocessing', 'data analysis', 'data visualization', 'model evaluation', 'classification', 'regression', 'linear regression', 'logistic regression', 'decision tree', 'random forest', 'naive bayes', 'support vector machine', 'svm', 'knn', 'k-nearest neighbors', 'clustering', 'pca', 'lda', 'tf-idf', 'bag of words', 'word2vec', 'cosine similarity', 'llm', 'generative ai', 'prompt engineering', 'langchain', 'rag', 'rest api', 'json', 'xml', 'jwt', 'oauth', 'linux', 'bash', 'shell scripting', 'object oriented programming', 'oop', 'data structures', 'algorithms', 'dsa', 'operating systems', 'computer networks', 'dbms', 'database management system', 'software engineering', 'jupyter notebook', 'visual studio code', 'vs code', 'pycharm', 'excel', 'power bi', 'tableau', 'chart.js', 'bootstrap', 'tailwind css', 'jquery', 'ajax', 'pypdf2', 'pdfplumber', 'reportlab', 'streamlit', 'render', 'vercel', 'firebase', 'debugging', 'problem solving']
 
-nlp = spacy.load("en_core_web_sm")
-
-# Load skills dataset
-
-skills_df = pd.read_csv("dataset/skills.csv")
-
-SKILLS = (
-
-    skills_df["Skill"]
-
-    .dropna()
-
-    .astype(str)
-
-    .str.lower()
-
-    .str.strip()
-
-    .unique()
-
-    .tolist()
-
-)
-
-# Skill synonyms
-
-SYNONYMS = {
-
-    "ai": "artificial intelligence",
-
-    "artificial intelligence": "artificial intelligence",
-
-    "machine learning": "machine learning",
-
-    "ml": "machine learning",
-
-    "deep learning": "deep learning",
-
-    "dl": "deep learning",
-
-    "nlp": "natural language processing",
-
-    "natural language processing": "natural language processing",
-
-    "javascript": "javascript",
-
-    "js": "javascript",
-
-    "reactjs": "react",
-
-    "react": "react",
-
-    "nodejs": "node",
-
-    "node.js": "node",
-
-    "node": "node",
-
-    "postgres": "postgresql",
-
-    "postgresql": "postgresql",
-
-    "mysql": "mysql",
-
-    "sql": "sql",
-
-    "rest": "rest api",
-
-    "restful api": "rest api",
-
-    "rest api": "rest api",
-
-    "oop": "object oriented programming",
-
-    "object oriented programming": "object oriented programming",
-
-    "aws": "amazon web services",
-
-    "amazon web services": "amazon web services",
-
-    "azure": "microsoft azure",
-
-    "microsoft azure": "microsoft azure",
-
-    "github": "github",
-
-    "git": "git",
-
-    "docker": "docker",
-
-    "kubernetes": "kubernetes",
-
-    "tensorflow": "tensorflow",
-
-    "pytorch": "pytorch",
-
-    "numpy": "numpy",
-
-    "pandas": "pandas",
-
-    "scikit learn": "scikit-learn",
-
-    "scikit-learn": "scikit-learn",
-
-    "flask": "flask",
-
-    "django": "django",
-
-    "html": "html",
-
-    "css": "css",
-
-    "bootstrap": "bootstrap",
-
-    "linux": "linux",
-
-    "c++": "c++",
-
-    "cpp": "c++",
-
-    "c#": "c#",
-
-    "java": "java",
-
-    "python": "python"
-
-}
-
+SYNONYMS = {'ml': 'machine learning', 'ai': 'artificial intelligence', 'nlp': 'natural language processing', 'js': 'javascript', 'ts': 'typescript', 'cpp': 'c++', 'scikit learn': 'scikit-learn', 'tfidf': 'tf-idf', 'tf idf': 'tf-idf', 'restful api': 'rest api', 'chartjs': 'chart.js', 'jupyter': 'jupyter notebook', 'vs code': 'visual studio code', 'gcp': 'google cloud', 'aws': 'amazon web services', 'os': 'operating systems', 'cn': 'computer networks', 'dbms': 'database management system', 'dsa': 'data structures', 'reactjs': 'react'}
 
 def normalize_skill(skill):
-
     skill = skill.lower().strip()
-
-    return SYNONYMS.get(
-
-        skill,
-
-        skill
-
-    )
-
+    return SYNONYMS.get(skill, skill)
 
 def extract_skills(text):
-
     if not text:
-
         return []
-
     text = text.lower()
-
-    text = re.sub(
-
-        r"[^\w\s#+.-]",
-
-        " ",
-
-        text
-
-    )
-
-    doc = nlp(text)
+    text = re.sub(r"[^a-z0-9#+.\-\s]", " ", text)
+    text = re.sub(r"\s+", " ", text)
 
     found = set()
 
-    # Match multi-word skills
-
     for skill in SKILLS:
+        escaped = re.escape(skill)
+        escaped = escaped.replace(r"\ ", r"[\s\-]+")
+        pattern = rf"\b{escaped}\b"
+        if re.search(pattern, text):
+            found.add(normalize_skill(skill))
 
-        pattern = r"\b" + re.escape(skill) + r"\b"
+    words = set(text.split())
+    for w in words:
+        n = normalize_skill(w)
+        if n in SKILLS:
+            found.add(n)
 
-        if re.search(
-
-            pattern,
-
-            text
-
-        ):
-
-            found.add(
-
-                normalize_skill(skill)
-
-            )
-
-    # Match token skills
-
-    tokens = {
-
-        token.text.lower()
-
-        for token in doc
-
-        if not token.is_space
-
-    }
-
-    for token in tokens:
-
-        token = normalize_skill(token)
-
-        if token in SKILLS or token in SYNONYMS.values():
-
-            found.add(token)
-
-    return sorted(
-
-        {
-
-            skill.title()
-
-            for skill in found
-
-        }
-
-    )
+    return sorted([s.title() for s in found])
