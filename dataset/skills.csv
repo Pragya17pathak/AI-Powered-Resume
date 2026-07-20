@@ -7,12 +7,16 @@ C#
 HTML
 CSS
 JavaScript
+TypeScript
 React
+ReactJS
 Angular
+Vue.js
 Node.js
 Express.js
 Flask
 Django
+FastAPI
 Spring Boot
 PHP
 SQL
@@ -20,16 +24,23 @@ MySQL
 PostgreSQL
 MongoDB
 SQLite
+Oracle
 Git
 GitHub
 Docker
 Kubernetes
 AWS
+Amazon Web Services
 Azure
+Microsoft Azure
 Google Cloud
 Machine Learning
+ML
 Deep Learning
+DL
 Artificial Intelligence
+AI
+Natural Language Processing
 NLP
 Computer Vision
 TensorFlow
@@ -38,15 +49,91 @@ PyTorch
 Scikit-learn
 Pandas
 NumPy
+SciPy
 Matplotlib
 Seaborn
 OpenCV
+Feature Engineering
+Data Preprocessing
+Data Cleaning
+Data Analysis
+Data Visualization
+Model Evaluation
+Classification
+Regression
+Linear Regression
+Logistic Regression
+Decision Tree
+Random Forest
+Naive Bayes
+Support Vector Machine
+SVM
+KNN
+K-Nearest Neighbors
+Clustering
+PCA
+LDA
+TF-IDF
+Bag of Words
+Word2Vec
+Cosine Similarity
+Transformer
+BERT
+LLM
+Generative AI
+Prompt Engineering
+LangChain
+RAG
+OpenAI API
+Gemini API
+REST API
+RESTful API
+JSON
+XML
+JWT
+OAuth
+Linux
+Windows
+Bash
+Shell Scripting
+Object Oriented Programming
+OOP
 Data Structures
 Algorithms
-OOP
-Linux
-REST API
-JSON
+DSA
+Operating Systems
+Computer Networks
+DBMS
+Database Management System
+Software Engineering
+Jupyter Notebook
+VS Code
+Visual Studio Code
+PyCharm
+Google Colab
 Excel
 Power BI
 Tableau
+Chart.js
+Bootstrap
+Tailwind CSS
+jQuery
+AJAX
+PyPDF2
+pdfplumber
+ReportLab
+Streamlit
+Render
+Vercel
+Netlify
+Heroku
+Firebase
+CI/CD
+Unit Testing
+Debugging
+Problem Solving
+Communication
+Leadership
+Teamwork
+Agile
+Scrum
